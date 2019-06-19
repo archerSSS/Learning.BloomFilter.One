@@ -122,17 +122,12 @@ namespace AlgoTestProject_1
             Assert.AreEqual(true, filter.IsValue("bee"));
             Assert.AreEqual(true, filter.IsValue("wasp"));
         }
+        
 
+        // Добавление строки с числовыми символами от 0 до 9 в разном порядке 10 раз.
+        //
         [TestMethod]
         public void TestBit_4()
-        {
-            BloomFilter filter = new BloomFilter(32);
-            filter.Add("floor");
-            Assert.AreEqual(true, filter.IsValue("floor"));
-        }
-
-        [TestMethod]
-        public void TestBit_5()
         {
             BloomFilter filter = new BloomFilter(32);
             filter.Add("0123456789");
@@ -156,6 +151,20 @@ namespace AlgoTestProject_1
             Assert.AreEqual(true, filter.IsValue("7890123456"));
             Assert.AreEqual(true, filter.IsValue("8901234567"));
             Assert.AreEqual(true, filter.IsValue("9012345678"));
+        }
+
+
+        // Добавление пустой строки
+        //
+        [TestMethod]
+        public void TestBit_5()
+        {
+            BloomFilter filter = new BloomFilter(32);
+
+            Assert.AreEqual(false, filter.IsValue(""));
+
+            filter.Add("");
+            Assert.AreEqual(true, filter.IsValue(""));
         }
     }
 }
